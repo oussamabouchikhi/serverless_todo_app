@@ -40,3 +40,7 @@ export async function updateTodo(
         done: updateTodoRequest.done
     })
 }
+
+export async function deleteTodo(userId: string, todoId: string){
+    return await todoAccess.deleteTodo(userId, todoId)
+}
