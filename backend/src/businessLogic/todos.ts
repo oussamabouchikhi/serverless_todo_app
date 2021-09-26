@@ -44,3 +44,10 @@ export async function updateTodo(
 export async function deleteTodo(userId: string, todoId: string){
     return await todoAccess.deleteTodo(userId, todoId)
 }
+export async function createAttachmentPresignedUrl(updateTodo, userId: string, todoId: string): Promise<TodoItem>{
+  return await todoAccess.createAttachmentPresignedUrl({
+    userId,
+    todoId,
+    attachmentUrl: updateTodo.attachmentUrl,
+  })
+}
