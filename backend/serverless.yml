@@ -155,9 +155,6 @@ functions:
 resources:
   Resources:
     # Add necessary AWS resources. You will need at least the following AWS resources
-resources:
-  Resources:
-    # Add necessary AWS resources. You will need at least the following AWS resources
     GatewayResponseDefault4XX:
       Type: AWS::ApiGateway::GatewayResponse
       Properties:
