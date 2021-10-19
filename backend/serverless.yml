@@ -1,7 +1,7 @@
 org: oussamabouchikhi
 app: serverless-todo-app
 service: serverless-todo-app
-
+variablesResolutionMode: 20210326
 plugins:
   - serverless-webpack
   - serverless-iam-roles-per-function
@@ -24,7 +24,7 @@ provider:
   environment:
     TODOS_TABLE: Todos-${self:provider.stage}
     TODOS_CREATED_AT_INDEX: CreatedAtIndex
-    ATTACHMENTS_S3_BUCKET: serverless-c4-todo-images-${self:provider.stage}
+    ATTACHMENTS_S3_BUCKET: serverless-c4-todo-images-2-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
 
   logs:
@@ -158,12 +158,13 @@ resources:
     GatewayResponseDefault4XX:
       Type: AWS::ApiGateway::GatewayResponse
       Properties:
-        gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
-        gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
-        gatewayresponse.header.Access-Control-Allow-Methods: "'GET,OPTIONS,POST'"
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+          gatewayresponse.header.Access-Control-Allow-Methods: "'GET,OPTIONS,POST'"
         ResponseType: DEFAULT_4XX
-      RestApiId:
-        Ref: ApiGatewayRestApi
+        RestApiId:
+          Ref: ApiGatewayRestApi
 
     # Create a DynamoDB table with local secondary index and a composite key
     TodosTable:
